@@ -1,0 +1,12 @@
+.selected_mail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    padding-left: 1vw;
+}
+
+.selected_mail h4,
+.selected_mail h5 {
+    color: #515151;
+}

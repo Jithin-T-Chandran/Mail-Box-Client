@@ -1,0 +1,14 @@
+div.inbox_menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #e2e8f0;
+    flex: 1;
+    overflow: auto;
+}
+
+span.not-opened {
+    color: #ef4444;
+}

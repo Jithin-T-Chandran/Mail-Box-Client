@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0px;
+    height: 100%;
+}
+
+div.home {
+    line-height: 3rem;
+    height: 80vh;
+}
+
+@media screen and (max-width:425px) {
+    div.home {
+        line-height: 2rem;
+        font-size: calc(2.15vw + 30%);
+    }
+}
+
+
+.container .side_menu {
+    width: 20%;
+}
+
+.side_menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #e1e1e1;
+    list-style: none;
+}
+
+.side_menu ul a {
+    text-decoration: none;
+    color: #313131;
+    padding: 1px;
+}
+
+.side_menu ul .active_link {
+    color: #105570;
+    text-decoration: none;
+    border-left: 5px solid #105570;
+    padding-left: 4px;
+    margin-bottom: 5px;
+}
+
+.home .menu_bar {
+    text-align: center;
+    background: #94a3b8;
+}
+
+
+.container .main_menu {
+    display: inline-block;
+    border-left: 1px solid #94A3B8;
+    height: 100%;
+    width: 85%;
+    z-index: 10;
+    padding: 0px 3% 3%;
+}
+
+.container .main_menu textarea {
+    display: inline-block;
+    overflow: hidden;
+    resize: both;
+    min-height: 100px;
+    min-width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.container label {
+    padding: 10px 0px;
+}
+
+.container h3 {
+    text-align: center;
+}
+
+form.mailbox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0px 10%;
+}
+
+form.mailbox input {
+    border: 1px solid #e1e1e1;
+    padding: 5px 10px;
+    border-radius: 10px;
+    width: 100%;
+}

@@ -1,0 +1,12 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+main {
+    display: inline-block;
+    height: 80vh;
+    flex: 1 0 auto;
+    overflow-y: scroll;
+}
