@@ -34,9 +34,6 @@ function Sent() {
     }
   return (
     <div className="home">
-        <div className="menu_bar">
-            <h3>Mailbox Client</h3>
-        </div>
         <div className="container">
             <div className="side_menu">
                 <ul>

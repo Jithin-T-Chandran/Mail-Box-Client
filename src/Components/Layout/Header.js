@@ -6,13 +6,15 @@ import { logout } from "../../store/auth";
 
 function Header() {
     const dispatch = useDispatch();
-    const isToken = localStorage.getItem("token");
     const history = useHistory();
+    const isLoggedIn = useSelector((state) => state.user.isAuthenticated);
 
 
     const logoutHandler = (event) => {
         event.preventDefault();
         localStorage.removeItem("Token");
+        localStorage.removeItem("userID");
+        localStorage.removeItem("email");
         dispatch(logout());
         history.replace("/login");
     }
@@ -32,17 +34,16 @@ function Header() {
             </NavLink>
             <div className="d-flex align-items-center" id="navbarTogglerDemo02">
                 <ul className="navbar-nav ml-auto">
-                    {isToken !== null &&
-                        <li className="nav-item"><NavLink className="nav-link"  to="/home">Home</NavLink></li>}
-                    {isToken === null && <li className="nav-item">
-                        <NavLink className="nav-link" activeClassName="active-item" to="/signup">Signup</NavLink>
-                    </li>}
-                    {isToken === null && <li className="nav-item">
-                        <NavLink className="nav-link" activeClassName="active-item" to="/login">Login</NavLink>
-                    </li>}
-                    {isToken !== null && <li className="nav-item">
-                        <div className="nav-link pointerMouse" onClick={logoutHandler}  >Logout</div>
-                    </li>}
+                    <li className="nav-item">{isLoggedIn &&<NavLink className="nav-link"  to="/home">Home</NavLink>}</li>
+                    <li className="nav-item">
+                        {!isLoggedIn &&  <NavLink className="nav-link" activeClassName="active-item" to="/signup">Signup</NavLink>}
+                    </li>
+                     <li className="nav-item">
+                        {!isLoggedIn &&  <NavLink className="nav-link" activeClassName="active-item" to="/login">Login</NavLink>}
+                    </li>
+                    <li className="nav-item">
+                        {isLoggedIn &&<div className="nav-link pointerMouse" onClick={logoutHandler}  >Logout</div>}
+                    </li>
                 </ul>
             </div>
             </div>

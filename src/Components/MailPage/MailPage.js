@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useParams } from "react-router";
 import { mailActions } from '../../store/mailSlice';
 import { getUsername } from '../../helper';
+import parse from "html-react-parser";
 import "./MailPage.css";
 
 function MailPage(props) {
@@ -12,6 +13,8 @@ function MailPage(props) {
     const dispatch = useDispatch();
     const params = useParams();
     const mail = useSelector(state => state.mail.mail);
+    // const mailBody = mail.message.toString();
+    // console.log("Mail body",mailBody.props.children);
         useEffect(() => {
             if (props.isSentBoxMail === false) {
                 fetch(`https://mail-box-client-c36e3-default-rtdb.firebaseio.com//${username}/receiver.json`).then((res) => {
@@ -62,7 +65,8 @@ function MailPage(props) {
                     <h4>Subject</h4>
                     <h3>{mail.subject}</h3>
                     <h4>Message</h4>
-                    <p>{mail.message}</p>
+                    {/* {parse(mail.message)} */}
+                    <div dangerouslySetInnerHTML={{ __html: mail.message }} />
                 </div>
             </div>
         </div >

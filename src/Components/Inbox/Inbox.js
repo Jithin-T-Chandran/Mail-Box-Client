@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { mailActions } from '../../store/mailSlice';
 import { getUsername } from '../../helper';
 import Mail from '../Mail/Mail';
+import SyncLoader from "react-spinners/SyncLoader";
 import "./Inbox.css";
 
 function Inbox() {
@@ -12,6 +13,14 @@ function Inbox() {
     const username = getUsername(user);
     const dispatch = useDispatch();
     const totalNotOpened = useSelector(state => state.mail.totalNotOpened);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2300);
+    }, []);
     useEffect(() => {
         console.log("called");
         const setIntervalId = setInterval(() => {
@@ -45,10 +54,15 @@ function Inbox() {
         })
     }
   return (
+    <Fragment>
+              {loading ? (
+        <div className="spinner topRatio" >
+          <SyncLoader color={"#33bbff"} loading={loading} size={30} />
+        </div>
+      ) : (
+        <>
+
             <div className="home">
-                <div className="menu_bar">
-                    <h3>Mailbox Client</h3>
-                </div>
                 <div className="container">
                     <div className="side_menu">
                         <ul>
@@ -66,6 +80,9 @@ function Inbox() {
                     </div>
                 </div>
             </div >
+            </>
+                  )}
+    </Fragment>
 );
 }
 

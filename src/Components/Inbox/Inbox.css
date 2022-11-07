@@ -10,5 +10,9 @@ div.inbox_menu {
 }
 
 span.not-opened {
-    color: #ef4444;
+    color: red;
+    font-size: small;
+}
+.topRatio{
+    margin-top: 12px;
 }

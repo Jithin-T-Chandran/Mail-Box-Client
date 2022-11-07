@@ -1,15 +1,17 @@
-import React from 'react'
+import React,{useState,Fragment} from 'react'
 import { NavLink } from "react-router-dom";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { mailActions } from '../../store/mailSlice';
 import { getUsername } from '../../helper';
+import JoditEditor from 'jodit-react';
 import "./Home.css";
 
 function Home() {
     const to = useRef();
     const subject = useRef();
     const message = useRef();
+    let [content, setContent] = useState("");
 
     const dispatch = useDispatch();
 
@@ -22,7 +24,7 @@ function Home() {
         e.preventDefault();
         const enteredto = to.current.value;
         const enteredSubject = subject.current.value;
-        const enteredmessage = message.current.value;
+        const enteredmessage = content;
         const email = {
             receiver: enteredto,
             subject: enteredSubject,
@@ -40,6 +42,7 @@ function Home() {
             else return res.json();
         }).then((data) => {
             console.log("MESSAGE SENT");
+            console.log(email);
         }).catch((err) => {
             console.error(err.message);
         });
@@ -65,33 +68,58 @@ function Home() {
 
 
   return (
-      <div className="home">
-            <div className="menu_bar">
-                <h3>Mailbox Client 📧</h3>
-            </div>
-            <div className="container">
-                <div className="side_menu">
+            <Fragment>
+                <div className="sidebar">
                     <ul>
                         <li>
-                            <NavLink to="/home" activeClassName="active_link">Compose</NavLink>
+                          <NavLink to="/home" activeClassName="active_link">Compose</NavLink>
                         </li>
                         <li><NavLink to="/inbox" activeClassName="active_link">Inbox</NavLink></li>
                         <li><NavLink to="/sent" activeClassName="active_link">Sent</NavLink></li>
                     </ul>
                 </div>
-                <div className="main_menu">
-                    <form className="mailbox" onSubmit={submitHandler}>
-                        <label htmlFor="email">To:</label>
-                        <input type="email" name="email" id="email" placeholder="Enter receiver's email" ref={to} />
-                        <label htmlFor="Subject">Subject:</label>
-                        <input type="text" name="Subject" id="Subject" ref={subject} placeholder="Enter sender's email" />
-                        <label htmlFor="Message">Message:</label>
-                        <textarea type="text" name="Message" id="Message" ref={message} />
-                        <button className="btn-auth">Send Email</button>
-                    </form>
+
+                <div className="content">
+                    <h2>Responsive Sidebar Example</h2>
+                    <p>This example use media queries to transform the sidebar to a top navigation bar when the screen size is 700px or less.</p>
+                    <p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
+                    <h3>Resize the browser window to see the effect.</h3>
                 </div>
-            </div>
-        </div>
+            </Fragment>
+
+
+    //   <div className="home">
+    //         <div className="container">
+    //             <div className="side_menu">
+    //                 <ul>
+    //                     <li>
+    //                         <NavLink to="/home" activeClassName="active_link">Compose</NavLink>
+    //                     </li>
+    //                     <li><NavLink to="/inbox" activeClassName="active_link">Inbox</NavLink></li>
+    //                     <li><NavLink to="/sent" activeClassName="active_link">Sent</NavLink></li>
+    //                 </ul>
+    //             </div>
+    //             <div className="main_menu">
+    //                     <form cla onSubmit={submitHandler}>
+    //                         <div className="form-group">
+    //                             <label htmlFor="email">To:</label>
+    //                             <input type="email" name="email" id="email" placeholder="Enter receiver's email" ref={to} className="form-control"/>
+    //                         </div>
+    //                         <div className="form-group">
+    //                             <label htmlFor="Subject">Subject:</label>
+    //                             <input type="text" name="Subject" id="Subject" ref={subject} placeholder="Enter subject" className="form-control"/>
+    //                         </div>
+    //                         <div className="form-group">
+    //                             <label htmlFor="Message">Message:</label>
+    //                             {/* <textarea type="text" name="Message" id="Message" ref={message} /> */}
+    //                             <JoditEditor className="textWidth" ref={message} value={content} onChange={(content) =>setContent(content)} />
+    //                         </div>
+    //                             <button className="btn btn-primary">Send Email</button>
+    //                             <br/>
+    //                         </form>
+    //             </div>
+    //         </div>
+    //     </div>
   );
 }
 
