@@ -34,7 +34,7 @@ div.home {
     list-style: none;
 }
 
-.side_menu ul li {
+.side_menu ul a {
     text-decoration: none;
     color: #313131;
     padding: 1px;
@@ -95,57 +95,3 @@ form.mailbox input {
     border-radius: 10px;
     width: 100%;
 }
-.textWidth{
-    width: 100%;
-}
-
-
-.sidebar {
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #a0c2a9;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
-  }
-  
-  .sidebar li {
-    display: block;
-    color: black;
-    padding: 16px;
-    text-decoration: none;
-  }
-   
-  .sidebar li.active {
-    background-color: #04AA6D;
-    color: white;
-  }
-  
-  .sidebar li:hover:not(.active) {
-    background-color: #555;
-    color: white;
-  }
-  
-  div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-  }
-  
-  @media screen and (max-width: 700px) {
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-    }
-    .sidebar li {float: left;}
-    div.content {margin-left: 0;}
-  }
-  
-  @media screen and (max-width: 400px) {
-    .sidebar li {
-      text-align: center;
-      float: none;
-    }
-  }

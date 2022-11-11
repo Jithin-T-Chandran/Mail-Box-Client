@@ -69,22 +69,38 @@ function Home() {
 
   return (
             <Fragment>
-                <div className="sidebar">
+      <div className="home">
+            <div className="container">
+                <div className="side_menu">
                     <ul>
                         <li>
-                          <NavLink to="/home" activeClassName="active_link">Compose</NavLink>
+                            <NavLink to="/home" activeClassName="active_link">Compose</NavLink>
                         </li>
                         <li><NavLink to="/inbox" activeClassName="active_link">Inbox</NavLink></li>
                         <li><NavLink to="/sent" activeClassName="active_link">Sent</NavLink></li>
                     </ul>
                 </div>
-
-                <div className="content">
-                    <h2>Responsive Sidebar Example</h2>
-                    <p>This example use media queries to transform the sidebar to a top navigation bar when the screen size is 700px or less.</p>
-                    <p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
-                    <h3>Resize the browser window to see the effect.</h3>
+                <div className="main_menu">
+                        <form cla onSubmit={submitHandler}>
+                            <div className="form-group">
+                                <label htmlFor="email">To:</label>
+                                <input type="email" name="email" id="email" placeholder="Enter receiver's email" ref={to} className="form-control"/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="Subject">Subject:</label>
+                                <input type="text" name="Subject" id="Subject" ref={subject} placeholder="Enter subject" className="form-control"/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="Message">Message:</label>
+                                {/* <textarea type="text" name="Message" id="Message" ref={message} /> */}
+                                <JoditEditor className="textWidth" ref={message} value={content} onChange={(content) =>setContent(content)} />
+                            </div>
+                                <button className="btn btn-primary">Send Email</button>
+                                <br/>
+                            </form>
                 </div>
+            </div>
+        </div>
             </Fragment>
 
 
