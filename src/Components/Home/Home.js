@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { mailActions } from '../../store/mailSlice';
 import { getUsername } from '../../helper';
 import JoditEditor from 'jodit-react';
+import Swal from "sweetalert2";
 import "./Home.css";
 
 function Home() {
@@ -42,6 +43,7 @@ function Home() {
             else return res.json();
         }).then((data) => {
             console.log("MESSAGE SENT");
+            Swal.fire("MESSAGE SENT!", `message sent to ${enteredto}`, "success");
             console.log(email);
         }).catch((err) => {
             console.error(err.message);
